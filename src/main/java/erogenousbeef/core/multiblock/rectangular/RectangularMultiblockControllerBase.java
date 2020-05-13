@@ -1,6 +1,7 @@
 package erogenousbeef.core.multiblock.rectangular;
 
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import erogenousbeef.core.common.CoordTriplet;
 import erogenousbeef.core.multiblock.MultiblockControllerBase;
@@ -18,7 +19,7 @@ public abstract class RectangularMultiblockControllerBase extends
 	 */
 	protected void isMachineWhole() throws MultiblockValidationException {
 		if(connectedParts.size() < getMinimumNumberOfBlocksForAssembledMachine()) {
-			throw new MultiblockValidationException("Machine is too small.");
+			throw new MultiblockValidationException(StatCollector.translateToLocal("Machine is too small."));
 		}
 		
 		CoordTriplet maximumCoord = getMaximumCoord();
@@ -36,12 +37,12 @@ public abstract class RectangularMultiblockControllerBase extends
 		int minY = getMinimumYSize();
 		int minZ = getMinimumZSize();
 		
-		if(maxX > 0 && deltaX > maxX) { throw new MultiblockValidationException(String.format("Machine is too large, it may be at most %d blocks in the X dimension", maxX)); }
-		if(maxY > 0 && deltaY > maxY) { throw new MultiblockValidationException(String.format("Machine is too large, it may be at most %d blocks in the Y dimension", maxY)); }
-		if(maxZ > 0 && deltaZ > maxZ) { throw new MultiblockValidationException(String.format("Machine is too large, it may be at most %d blocks in the Z dimension", maxZ)); }
-		if(deltaX < minX) { throw new MultiblockValidationException(String.format("Machine is too small, it must be at least %d blocks in the X dimension", minX)); }
-		if(deltaY < minY) { throw new MultiblockValidationException(String.format("Machine is too small, it must be at least %d blocks in the Y dimension", minY)); }
-		if(deltaZ < minZ) { throw new MultiblockValidationException(String.format("Machine is too small, it must be at least %d blocks in the Z dimension", minZ)); }
+		if(maxX > 0 && deltaX > maxX) { throw new MultiblockValidationException(String.format(StatCollector.translateToLocal("Machine is too large, it may be at most %d blocks in the X dimension"), maxX)); }
+		if(maxY > 0 && deltaY > maxY) { throw new MultiblockValidationException(String.format(StatCollector.translateToLocal("Machine is too large, it may be at most %d blocks in the Y dimension"), maxY)); }
+		if(maxZ > 0 && deltaZ > maxZ) { throw new MultiblockValidationException(String.format(StatCollector.translateToLocal("Machine is too large, it may be at most %d blocks in the Z dimension"), maxZ)); }
+		if(deltaX < minX) { throw new MultiblockValidationException(String.format(StatCollector.translateToLocal("Machine is too small, it must be at least %d blocks in the X dimension"), minX)); }
+		if(deltaY < minY) { throw new MultiblockValidationException(String.format(StatCollector.translateToLocal("Machine is too small, it must be at least %d blocks in the Y dimension"), minY)); }
+		if(deltaZ < minZ) { throw new MultiblockValidationException(String.format(StatCollector.translateToLocal("Machine is too small, it must be at least %d blocks in the Z dimension"), minZ)); }
 
 		// Now we run a simple check on each block within that volume.
 		// Any block deviating = NO DEAL SIR
@@ -59,9 +60,8 @@ public abstract class RectangularMultiblockControllerBase extends
 						part = (RectangularMultiblockTileEntityBase)te;
 						
 						// Ensure this part should actually be allowed within a cube of this controller's type
-						if(!myClass.equals(part.getMultiblockControllerType()))
-						{
-							throw new MultiblockValidationException(String.format("Part @ %d, %d, %d is incompatible with machines of type %s", x, y, z, myClass.getSimpleName()));
+						if(!myClass.equals(part.getMultiblockControllerType())){
+							throw new MultiblockValidationException(String.format(StatCollector.translateToLocal("Part @ %d, %d, %d is incompatible with machines of type %s"), x, y, z, myClass.getSimpleName()));
 						}
 					}
 					else {

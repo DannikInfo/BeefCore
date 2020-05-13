@@ -3,6 +3,7 @@ package erogenousbeef.core.multiblock;
 import java.util.HashMap;
 import java.util.Set;
 
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import erogenousbeef.core.common.BeefCoreLog;
 
@@ -85,7 +86,7 @@ public class MultiblockRegistry {
 			registries.get(world).addDirtyController(controller);
 		}
 		else {
-			throw new IllegalArgumentException("Adding a dirty controller to a world that has no registered controllers!");
+			throw new IllegalArgumentException(StatCollector.translateToLocal("Adding a dirty controller to a world that has no registered controllers!"));
 		}
 	}
 	

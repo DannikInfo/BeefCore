@@ -21,8 +21,7 @@ public class CoordTriplet implements Comparable {
 	
 	@Override
 	public boolean equals(Object other) {
-		if(other == null)
-		{ return false; }
+		if(other == null){ return false; }
 		else if(other instanceof CoordTriplet) {
 			CoordTriplet otherTriplet = (CoordTriplet)other;
 			return this.x == otherTriplet.x && this.y == otherTriplet.y && this.z == otherTriplet.z;

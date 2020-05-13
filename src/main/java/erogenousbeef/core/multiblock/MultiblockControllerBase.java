@@ -6,6 +6,7 @@ import java.util.Set;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -370,7 +371,7 @@ public abstract class MultiblockControllerBase {
 	public void assimilate(MultiblockControllerBase other) {
 		CoordTriplet otherReferenceCoord = other.getReferenceCoord();
 		if(otherReferenceCoord != null && getReferenceCoord().compareTo(otherReferenceCoord) >= 0) {
-			throw new IllegalArgumentException("The controller with the lowest minimum-coord value must consume the one with the higher coords");
+			throw new IllegalArgumentException(StatCollector.translateToLocal("The controller with the lowest minimum-coord value must consume the one with the higher coords"));
 		}
 
 		TileEntity te;
@@ -497,7 +498,7 @@ public abstract class MultiblockControllerBase {
 	 * @throws MultiblockValidationException if the tested block is not allowed on the machine's frame
 	 */
 	protected void isBlockGoodForFrame(World world, int x, int y, int z) throws MultiblockValidationException {
-		throw new MultiblockValidationException(String.format("%d, %d, %d - Block is not valid for use in the machine's interior", x, y, z));
+		throw new MultiblockValidationException(String.format(StatCollector.translateToLocal("%d, %d, %d - Block is not valid for use in the machine's interior"), x, y, z));
 	}
 
 	/**
@@ -509,7 +510,7 @@ public abstract class MultiblockControllerBase {
 	 * @throws MultiblockValidationException if the tested block is not allowed on the machine's top face
 	 */
 	protected void isBlockGoodForTop(World world, int x, int y, int z) throws MultiblockValidationException {
-		throw new MultiblockValidationException(String.format("%d, %d, %d - Block is not valid for use in the machine's interior", x, y, z));
+		throw new MultiblockValidationException(String.format(StatCollector.translateToLocal("%d, %d, %d - Block is not valid for use in the machine's interior"), x, y, z));
 	}
 	
 	/**
@@ -521,7 +522,7 @@ public abstract class MultiblockControllerBase {
 	 * @throws MultiblockValidationException if the tested block is not allowed on the machine's bottom face
 	 */
 	protected void isBlockGoodForBottom(World world, int x, int y, int z) throws MultiblockValidationException {
-		throw new MultiblockValidationException(String.format("%d, %d, %d - Block is not valid for use in the machine's interior", x, y, z));
+		throw new MultiblockValidationException(String.format(StatCollector.translateToLocal("%d, %d, %d - Block is not valid for use in the machine's interior"), x, y, z));
 	}
 	
 	/**
@@ -533,7 +534,7 @@ public abstract class MultiblockControllerBase {
 	 * @throws MultiblockValidationException if the tested block is not allowed on the machine's side faces
 	 */
 	protected void isBlockGoodForSides(World world, int x, int y, int z) throws MultiblockValidationException {
-		throw new MultiblockValidationException(String.format("%d, %d, %d - Block is not valid for use in the machine's interior", x, y, z));
+		throw new MultiblockValidationException(String.format(StatCollector.translateToLocal("%d, %d, %d - Block is not valid for use in the machine's interior"), x, y, z));
 	}
 	
 	/**
@@ -545,7 +546,7 @@ public abstract class MultiblockControllerBase {
 	 * @throws MultiblockValidationException if the tested block is not allowed in the machine's interior
 	 */
 	protected void isBlockGoodForInterior(World world, int x, int y, int z) throws MultiblockValidationException {
-		throw new MultiblockValidationException(String.format("%d, %d, %d - Block is not valid for use in the machine's interior", x, y, z));
+		throw new MultiblockValidationException(String.format(StatCollector.translateToLocal("%d, %d, %d - Block is not valid for use in the machine's interior"), x, y, z));
 	}
 	
 	/**
