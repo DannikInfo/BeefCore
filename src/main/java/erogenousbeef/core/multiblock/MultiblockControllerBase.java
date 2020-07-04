@@ -4,14 +4,15 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Set;
 
+import erogenousbeef.core.common.BeefCoreLog;
+import erogenousbeef.core.common.CoordTriplet;
+import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
-import erogenousbeef.core.common.BeefCoreLog;
-import erogenousbeef.core.common.CoordTriplet;
 
 /**
  * This class contains the base logic for "multiblock controllers". Conceptually, they are
@@ -99,7 +100,11 @@ public abstract class MultiblockControllerBase {
 	 * @return True if the tile entity at blockCoord is being tracked by this machine, false otherwise.
 	 */
 	public boolean hasBlock(CoordTriplet blockCoord) {
-		return connectedParts.contains(blockCoord);
+		if(this.worldObj.getTileEntity(blockCoord.x, blockCoord.y, blockCoord.z) instanceof IMultiblockPart) {
+			IMultiblockPart tile = (IMultiblockPart)this.worldObj.getTileEntity(blockCoord.x, blockCoord.y, blockCoord.z);
+			return connectedParts.contains(tile);
+		}else
+			return false;
 	}
 	
 	/**
